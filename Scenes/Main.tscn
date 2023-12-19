@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dfmeyd5f3h1m5"]
+[gd_scene load_steps=6 format=3 uid="uid://dfmeyd5f3h1m5"]
 
 [ext_resource type="Texture2D" uid="uid://doh6vd38c2r70" path="res://Assets/Space Shooter Redux/Backgrounds/darkPurple.png" id="1_k8k1i"]
+[ext_resource type="Texture2D" uid="uid://dsc2e4w57dunt" path="res://Assets/Space Shooter Redux/PNG/playerShip1_green.png" id="2_7b7di"]
+[ext_resource type="Script" path="res://Scripts/Player.cs" id="2_frdid"]
 
 [sub_resource type="Animation" id="Animation_cnjgo"]
 resource_name = "Scroll Background"
@@ -26,6 +28,8 @@ _data = {
 [node name="Main" type="Node2D"]
 
 [node name="Background" type="Node2D" parent="."]
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="DarkPurple" type="Sprite2D" parent="Background"]
 texture_repeat = 2
@@ -39,3 +43,13 @@ autoplay = "Scroll Background"
 libraries = {
 "": SubResource("AnimationLibrary_dgcvm")
 }
+
+[node name="Player" type="Node2D" parent="."]
+position = Vector2(270, 900)
+script = ExtResource("2_frdid")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_7b7di")
