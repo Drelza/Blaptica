@@ -29,8 +29,10 @@ public partial class Enemy : Node2D
 
     private void onBodyEntered(Node2D body)
     {
-		Events.EnemyDestroyed.Invoke(this);
 		QueueFree();
+
+		if (Events.EnemyDestroyed != null)
+			Events.EnemyDestroyed(this);			
     }
 
 }

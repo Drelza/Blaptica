@@ -10,9 +10,10 @@ height = 54.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5sq0a"]
 height = 70.0
 
-[node name="Player" type="Node2D"]
+[node name="Player" type="Node2D" node_paths=PackedStringArray("CollisionArea")]
 script = ExtResource("1_v4teq")
 LaserScene = ExtResource("2_pirmt")
+CollisionArea = NodePath("Area2D")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 

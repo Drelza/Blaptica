@@ -1,15 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqxwdp37sqmf2"]
+[gd_scene load_steps=5 format=3 uid="uid://cqxwdp37sqmf2"]
 
 [ext_resource type="FontFile" uid="uid://ct8seili5nhde" path="res://Assets/Space Shooter Redux/Bonus/kenvector_future.ttf" id="1_4mc2n"]
 [ext_resource type="Script" path="res://Scripts/UI.cs" id="1_d5u0a"]
+[ext_resource type="LabelSettings" uid="uid://ccvw4ucqwrrsu" path="res://Assets/Resources/ScoreSettings.tres" id="2_lmaax"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_did3p"]
+[sub_resource type="LabelSettings" id="LabelSettings_v3nj8"]
 font = ExtResource("1_4mc2n")
-font_size = 18
+font_size = 30
 
-[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("ScoreLabel")]
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("ScoreLabel", "GameOverLabel")]
 script = ExtResource("1_d5u0a")
 ScoreLabel = NodePath("MarginContainer/ScoreLabel")
+GameOverLabel = NodePath("CenterContainer/GameOverLabel")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 offset_right = 40.0
@@ -20,6 +22,22 @@ theme_override_constants/margin_top = 10
 [node name="ScoreLabel" type="Label" parent="MarginContainer"]
 layout_mode = 2
 text = "0"
-label_settings = SubResource("LabelSettings_did3p")
+label_settings = ExtResource("2_lmaax")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="GameOverLabel" type="Label" parent="CenterContainer"]
+visible = false
+layout_mode = 2
+text = "Game Over"
+label_settings = SubResource("LabelSettings_v3nj8")

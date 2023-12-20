@@ -9,9 +9,14 @@ public partial class Player : Node2D
     [Export]
     public PackedScene LaserScene;
 
+    [Export]
+    public Area2D CollisionArea;
+
     public override void _Ready()
     {
         base._Ready();
+
+        CollisionArea.AreaEntered += onAreaEntered;
     }
 
     public override void _Process(double delta)
@@ -20,6 +25,15 @@ public partial class Player : Node2D
 
         followMouse();
         handleInput();
+    }
+
+    private void onAreaEntered(Area2D area)
+    {        
+        var enemy = area.GetParent() as Enemy;
+        QueueFree();
+
+        if (Events.PlayerDestroyed != null)
+            Events.PlayerDestroyed(enemy);
     }
 
     private void handleInput()

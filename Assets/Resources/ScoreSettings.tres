@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://ccvw4ucqwrrsu"]
+
+[ext_resource type="FontFile" uid="uid://ct8seili5nhde" path="res://Assets/Space Shooter Redux/Bonus/kenvector_future.ttf" id="1_nxhp4"]
+
+[resource]
+font = ExtResource("1_nxhp4")
+font_size = 18

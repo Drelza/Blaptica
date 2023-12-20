@@ -1,9 +1,13 @@
+using System;
 using Godot;
 
 public partial class UI : CanvasLayer
 {
     [Export]
     public Label ScoreLabel;
+
+    [Export]
+    public Label GameOverLabel;
 
     private int score;
 
@@ -12,6 +16,7 @@ public partial class UI : CanvasLayer
         base._Ready();
 
         Events.EnemyDestroyed += onEnemyDestroyed;
+        Events.PlayerDestroyed += onPlayerDestroyed;
     }
 
     private void onEnemyDestroyed(Enemy destroyedEnemy)
@@ -19,9 +24,14 @@ public partial class UI : CanvasLayer
         increaseScore(destroyedEnemy.ScoreValue);
     }
 
+    private void onPlayerDestroyed(Enemy killer)
+    {
+        GameOverLabel.Visible = true;
+    }
+
     private void increaseScore(int scoreValue)
     {
         score += scoreValue;
         ScoreLabel.Text = score.ToString();
-    }
+    }    
 }
