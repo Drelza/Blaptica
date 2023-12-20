@@ -1,28 +1,38 @@
-using Godot;
 using System;
+using Godot;
 
-/// <summary>
-/// Root player node
-/// </summary>
 public partial class Player : Node2D
 {
-    /// <summary>
-    /// The ammount of padding on the left and right of the screen for player movement
-    /// </summary>
     [Export]
     public float Padding = 35;
+
+    [Export]
+    public PackedScene LaserScene;
+
+    public override void _Ready()
+    {
+        base._Ready();
+    }
 
     public override void _Process(double delta)
     {
         base._Process(delta);
 
-        FollowMouse();
+        followMouse();
+        handleInput();
     }
 
-    /// <summary>
-    /// Moves the player node to follow the mouse x position clamped withing the screen
-    /// </summary>
-    private void FollowMouse()
+    private void handleInput()
+    {
+        if (Input.IsActionJustPressed("primary"))
+        {
+            var laser = LaserScene.Instantiate<Laser>();
+            laser.Position = Position;
+            AddSibling(laser);
+        }
+    }
+
+    private void followMouse()
     {
         var newPosition = Position;
         newPosition.X = Mathf.Clamp(GetGlobalMousePosition().X,0 + Padding,540 - Padding);
