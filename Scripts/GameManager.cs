@@ -38,6 +38,10 @@ public partial class GameManager : Node
     private void onPlayerDestroyed(Enemy killer)
     {
         gameState = GameState.GAME_OVER;
+
+        GameEvents.GameOverEventHandler temp = GameEvents.GameOver;
+        if (temp != null)
+            temp();
     }
 
     protected override void Dispose(bool disposing)
