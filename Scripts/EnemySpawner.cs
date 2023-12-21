@@ -21,19 +21,19 @@ public partial class EnemySpawner : Node2D
 		Events.PlayerDestroyed += onPlayerDestroyed;
 	}
 
-    private void onPlayerDestroyed(Enemy killer)
-    {
+	private void onPlayerDestroyed(Enemy killer)
+	{
 		enemiesCanSpawn = false;
-    }
+	}
 
-    private void onTimerTimeOut()
-    {
+	private void onTimerTimeOut()
+	{
 		if (enemiesCanSpawn)
 		{
 			Enemy newEnemy = Enemy.Instantiate() as Enemy;
-			float xPos = (float)GD.RandRange(0+Padding,540-Padding);
-			newEnemy.Position = new Vector2(xPos,0);
-			AddSibling(newEnemy);			
+			float xPos = (float)GD.RandRange(0 + Padding, 540 - Padding);
+			newEnemy.Position = new Vector2(xPos, 0);
+			AddSibling(newEnemy);
 		}
-    }
+	}
 }

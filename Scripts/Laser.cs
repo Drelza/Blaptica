@@ -16,11 +16,10 @@ public partial class Laser : Node2D
         CollisionArea.AreaEntered += onAreaEntered;
     }
 
-
     public override void _Process(double delta)
     {
         base._Process(delta);
-        
+
         Vector2 newPosition = Position;
         newPosition.Y -= (float)(Velocity * delta);
         Position = newPosition;

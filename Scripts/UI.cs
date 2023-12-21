@@ -19,14 +19,6 @@ public partial class UI : CanvasLayer
         Events.PlayerDestroyed += onPlayerDestroyed;
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
-
-        Events.EnemyDestroyed -= onEnemyDestroyed;
-        Events.PlayerDestroyed -= onPlayerDestroyed;
-    }
-
     private void onEnemyDestroyed(Enemy destroyedEnemy)
     {
         increaseScore(destroyedEnemy.ScoreValue);
@@ -41,5 +33,13 @@ public partial class UI : CanvasLayer
     {
         score += scoreValue;
         ScoreLabel.Text = score.ToString();
-    }    
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+
+        Events.EnemyDestroyed -= onEnemyDestroyed;
+        Events.PlayerDestroyed -= onPlayerDestroyed;
+    }
 }

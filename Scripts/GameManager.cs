@@ -35,10 +35,15 @@ public partial class GameManager : Node
         }
     }
 
-
     private void onPlayerDestroyed(Enemy killer)
     {
         gameState = GameState.GAME_OVER;
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+
+        Events.PlayerDestroyed -= onPlayerDestroyed;
+    }
 }
