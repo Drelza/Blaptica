@@ -30,7 +30,7 @@ public partial class Enemy : Node2D
 	{
 		QueueFree();
 
-		if (Events.EnemyDestroyed != null)
-			Events.EnemyDestroyed(this);
+		if (GameEvents.EnemyDestroyed != null)
+			GameEvents.EnemyDestroyed(this);
 	}
 }

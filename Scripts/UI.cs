@@ -15,8 +15,8 @@ public partial class UI : CanvasLayer
     {
         base._Ready();
 
-        Events.EnemyDestroyed += onEnemyDestroyed;
-        Events.PlayerDestroyed += onPlayerDestroyed;
+        GameEvents.EnemyDestroyed += onEnemyDestroyed;
+        GameEvents.PlayerDestroyed += onPlayerDestroyed;
     }
 
     private void onEnemyDestroyed(Enemy destroyedEnemy)
@@ -39,7 +39,7 @@ public partial class UI : CanvasLayer
     {
         base.Dispose(disposing);
 
-        Events.EnemyDestroyed -= onEnemyDestroyed;
-        Events.PlayerDestroyed -= onPlayerDestroyed;
+        GameEvents.EnemyDestroyed -= onEnemyDestroyed;
+        GameEvents.PlayerDestroyed -= onPlayerDestroyed;
     }
 }

@@ -17,8 +17,8 @@ config/icon="res://Assets/icon.svg"
 
 [autoload]
 
-Events="*res://Scripts/Events.cs"
 GameManager="*res://Scripts/GameManager.cs"
+GameEvents="*res://Scripts/GameEvents.cs"
 
 [display]
 

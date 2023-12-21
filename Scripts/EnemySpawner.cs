@@ -18,7 +18,7 @@ public partial class EnemySpawner : Node2D
 		timer = GetNode("Timer") as Timer;
 
 		timer.Timeout += onTimerTimeOut;
-		Events.PlayerDestroyed += onPlayerDestroyed;
+		GameEvents.PlayerDestroyed += onPlayerDestroyed;
 	}
 
 	private void onPlayerDestroyed(Enemy killer)

@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class Events : Node
+public partial class GameEvents : Node
 {
     public delegate void EnemyDestroyedEventHandler(Enemy destroyedEnemy);
     public static EnemyDestroyedEventHandler EnemyDestroyed;
