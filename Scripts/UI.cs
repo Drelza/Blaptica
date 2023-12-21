@@ -19,16 +19,6 @@ public partial class UI : CanvasLayer
         Events.PlayerDestroyed += onPlayerDestroyed;
     }
 
-    public override void _Process(double delta)
-    {
-        base._Process(delta);
-
-        if (Input.IsActionJustPressed("ui_accept"))
-        {
-            GetTree().ReloadCurrentScene();
-        }
-    }
-
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
