@@ -1,7 +1,8 @@
 using Godot;
 using System;
 
-public partial class Enemy : Node2D
+[GlobalClass]
+public partial class BaseEnemy : Node2D
 {
 	[Export]
 	public Area2D CollisionArea;

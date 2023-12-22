@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://tyys4fs3l718"]
+
+[ext_resource type="Script" path="res://Scripts/BaseEnemy.cs" id="1_l2mj3"]
+
+[node name="Enemy" type="Node2D" node_paths=PackedStringArray("CollisionArea")]
+script = ExtResource("1_l2mj3")
+CollisionArea = NodePath("Area2D")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 5

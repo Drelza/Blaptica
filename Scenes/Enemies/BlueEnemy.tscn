@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3cwm1vxfsmsq"]
+
+[ext_resource type="PackedScene" uid="uid://tyys4fs3l718" path="res://Scenes/Enemies/BaseEnemy.tscn" id="1_6pnvj"]
+[ext_resource type="Texture2D" uid="uid://dtioe7mwgtoko" path="res://Assets/Space Shooter Redux/PNG/Enemies/enemyBlue2.png" id="2_6woc3"]
+[ext_resource type="Script" path="res://Scripts/BlueEnemy.cs" id="2_7e7rg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iruwb"]
+radius = 35.0
+
+[node name="BlueEnemy" instance=ExtResource("1_6pnvj")]
+script = ExtResource("2_7e7rg")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_6woc3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_iruwb")

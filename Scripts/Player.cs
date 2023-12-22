@@ -28,7 +28,7 @@ public partial class Player : Node2D
 
     private void onAreaEntered(Area2D area)
     {
-        var enemy = area.GetParent() as Enemy;
+        var enemy = area.GetParent() as BaseEnemy;
         QueueFree();
 
         GameEvents.PlayerDestroyedEventHandler temp = GameEvents.PlayerDestroyed;

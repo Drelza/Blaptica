@@ -35,7 +35,7 @@ public partial class GameManager : Node
         }
     }
 
-    private void onPlayerDestroyed(Enemy killer)
+    private void onPlayerDestroyed(BaseEnemy killer)
     {
         gameState = GameState.GAME_OVER;
 

@@ -19,7 +19,7 @@ public partial class UI : CanvasLayer
         GameEvents.GameOver += onPlayerDestroyed;
     }
 
-    private void onEnemyDestroyed(Enemy destroyedEnemy)
+    private void onEnemyDestroyed(BaseEnemy destroyedEnemy)
     {
         increaseScore(destroyedEnemy.ScoreValue);
     }
