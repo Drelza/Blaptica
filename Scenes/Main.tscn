@@ -53,6 +53,7 @@ position = Vector2(270, 900)
 script = ExtResource("3_widjv")
 Enemy = ExtResource("3_avqwp")
 Padding = 60.0
+EnemiesPerSecond = 2.0
 
 [node name="Timer" type="Timer" parent="EnemySpawner"]
 autostart = true

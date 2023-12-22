@@ -9,6 +9,9 @@ public partial class EnemySpawner : Node2D
 	[Export]
 	public float Padding = 10;
 
+	[Export]
+	public float EnemiesPerSecond = 1;
+
 	private Timer timer;
 	private bool enemiesCanSpawn;
 
@@ -16,6 +19,8 @@ public partial class EnemySpawner : Node2D
 	{
 		enemiesCanSpawn = true;
 		timer = GetNode("Timer") as Timer;
+
+		timer.WaitTime = 1f / EnemiesPerSecond;
 
 		timer.Timeout += onTimerTimeOut;
 		GameEvents.PlayerDestroyed += onPlayerDestroyed;
@@ -27,13 +32,19 @@ public partial class EnemySpawner : Node2D
 	}
 
 	private void onTimerTimeOut()
-	{
-		if (enemiesCanSpawn)
-		{
-			Enemy newEnemy = Enemy.Instantiate() as Enemy;
-			float xPos = (float)GD.RandRange(0 + Padding, 540 - Padding);
-			newEnemy.Position = new Vector2(xPos, 0);
-			AddSibling(newEnemy);
-		}
-	}
+    {
+        SpawnEnemy();
+    }
+
+    private void SpawnEnemy()
+    {
+        if (enemiesCanSpawn)
+        {
+            Enemy newEnemy = Enemy.Instantiate() as Enemy;
+            float xPos = (float)GD.RandRange(0 + Padding, 540 - Padding);
+            newEnemy.Position = new Vector2(xPos, 0);
+            AddSibling(newEnemy);
+        }
+    }
+
 }
