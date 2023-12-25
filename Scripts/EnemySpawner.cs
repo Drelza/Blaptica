@@ -11,9 +11,6 @@ public partial class EnemySpawner : Node2D
 	[Export]
 	public float Padding = 10;
 
-	[Export]
-	public float EnemiesPerSecond = 1;
-
 	private Timer timer;
 	private bool enemiesCanSpawn;
 	private PackedScene[] enemies;
@@ -23,8 +20,6 @@ public partial class EnemySpawner : Node2D
 		enemies = new PackedScene[] { RedEnemyScene, BlueEnemyScene };
 		enemiesCanSpawn = true;
 		timer = GetNode("Timer") as Timer;
-
-		timer.WaitTime = 1f / EnemiesPerSecond;
 
 		timer.Timeout += onTimerTimeOut;
 		GameEvents.PlayerDestroyed += onPlayerDestroyed;

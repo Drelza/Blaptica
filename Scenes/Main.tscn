@@ -55,7 +55,6 @@ script = ExtResource("3_widjv")
 RedEnemyScene = ExtResource("4_y08jr")
 BlueEnemyScene = ExtResource("5_qwb36")
 Padding = 60.0
-EnemiesPerSecond = 2.0
 
 [node name="Timer" type="Timer" parent="EnemySpawner"]
 autostart = true
