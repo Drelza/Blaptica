@@ -4,10 +4,14 @@
 	- inheritance makes it easeir to make the same change to lots of classes/nodes.
 	- Rename Player to PlayerShip?
 	- Rename BaseEnemy to EnemyShip?
+
 - Add variation to enemies
   - Harder enemies = more points
+
 - Add space station boss fight
-  - Appears at score threshold
+  - Appears at end of stage
+
 - Improve scoring system
-- Leaderboard and name saving
-	- Arcade style
+  - Arcade style leaderboard and name saving
+
+- DDR style performance bar
