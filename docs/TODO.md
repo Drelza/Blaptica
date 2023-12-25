@@ -5,7 +5,6 @@
 	- Rename Player to PlayerShip?
 	- Rename BaseEnemy to EnemyShip?
 - Add variation to enemies
-- Add enemy shooting
 - Add space station boss fight
 - Improve scoring system
 - Leaderboard and name saving
