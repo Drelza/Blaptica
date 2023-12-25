@@ -4,6 +4,7 @@
 	- inheritance makes it easeir to make the same change to lots of classes/nodes.
 	- Rename Player to PlayerShip?
 	- Rename BaseEnemy to EnemyShip?
+- Add variation to enemies
 - Add enemy shooting
 - Add space station boss fight
 - Improve scoring system
