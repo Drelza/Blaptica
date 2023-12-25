@@ -5,7 +5,9 @@
 	- Rename Player to PlayerShip?
 	- Rename BaseEnemy to EnemyShip?
 - Add variation to enemies
+  - Harder enemies = more points
 - Add space station boss fight
+  - Appears at score threshold
 - Improve scoring system
 - Leaderboard and name saving
 	- Arcade style
