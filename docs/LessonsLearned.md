@@ -5,3 +5,5 @@
 - Disconnect events when objects are disposed.
   - Prevents reference to disposed object.
 - Partial classes that extend Godot Nodes cannot be made static, or abstract.
+- Scene inheritance is inidicated on the child scene
+  - Example: `[ext_resource type="PackedScene" uid="uid://cuoifcp2ofdea" path="res://Scenes/Ship.tscn" id="1_44hq2"]`
