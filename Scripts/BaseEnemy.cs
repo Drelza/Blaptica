@@ -1,3 +1,5 @@
+using System;
+using System.Diagnostics.Tracing;
 using Godot;
 
 [GlobalClass]
@@ -15,14 +17,20 @@ public partial class BaseEnemy : Node2D
 	[Export]
 	public float LaserInterval = 0.4f;
 
+	[Export]
 	public int ScoreValue = 1;
 
 	private Timer timer;
+	private VisibleOnScreenNotifier2D onScreenNotifier;
 
 	public override void _Ready()
 	{
 		base._Ready();
+
+		onScreenNotifier = GetNode<VisibleOnScreenNotifier2D>("VisibleOnScreenNotifier2D");
+
 		CollisionArea.AreaEntered += onBodyEntered;
+		onScreenNotifier.ScreenExited += onScreenExited;
 
         timer = new Timer
         {
@@ -34,7 +42,13 @@ public partial class BaseEnemy : Node2D
 		timer.Timeout += Shoot;
     }
 
-	public override void _Process(double delta)
+    private void onScreenExited()
+    {
+		QueueFree();
+		GameEvents.EnemyExited?.Invoke(this);
+    }
+
+    public override void _Process(double delta)
     {
         base._Process(delta);
 

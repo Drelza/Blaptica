@@ -11,4 +11,7 @@ public partial class GameEvents : Node
 
     public delegate void GameOverEventHandler();
     public static GameOverEventHandler GameOver;
+
+    public delegate void EnemyExitedEventHandler(BaseEnemy enemy);
+    public static EnemyExitedEventHandler EnemyExited;
 }

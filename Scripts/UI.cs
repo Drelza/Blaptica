@@ -17,21 +17,30 @@ public partial class UI : CanvasLayer
 
         GameEvents.EnemyDestroyed += onEnemyDestroyed;
         GameEvents.GameOver += onPlayerDestroyed;
+        GameEvents.EnemyExited += onEnemyMissed;
     }
+
+    private void onEnemyMissed(BaseEnemy enemy)
+    {
+        updateScore(-enemy.ScoreValue);
+    }
+
 
     private void onEnemyDestroyed(BaseEnemy destroyedEnemy)
     {
-        increaseScore(destroyedEnemy.ScoreValue);
+        updateScore(destroyedEnemy.ScoreValue);
     }
 
     private void onPlayerDestroyed()
     {
         GameOverLabel.Visible = true;
+        GameEvents.EnemyExited -= onEnemyMissed;
     }
 
-    private void increaseScore(int scoreValue)
+    private void updateScore(int scoreValue)
     {
         score += scoreValue;
+        score = score < 0 ? 0 : score;
         ScoreLabel.Text = score.ToString();
     }
 
@@ -41,5 +50,6 @@ public partial class UI : CanvasLayer
 
         GameEvents.EnemyDestroyed -= onEnemyDestroyed;
         GameEvents.GameOver -= onPlayerDestroyed;
+        GameEvents.EnemyExited -= onEnemyMissed;
     }
 }
