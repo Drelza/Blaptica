@@ -15,29 +15,29 @@ public partial class UI : CanvasLayer
     {
         base._Ready();
 
-        GameEvents.EnemyDestroyed += onEnemyDestroyed;
-        GameEvents.GameOver += onPlayerDestroyed;
-        GameEvents.EnemyExited += onEnemyMissed;
+        GameEvents.EnemyDestroyed += OnEnemyDestroyed;
+        GameEvents.GameOver += OnPlayerDestroyed;
+        GameEvents.EnemyExited += OnEnemyMissed;
     }
 
-    private void onEnemyMissed(BaseEnemy enemy)
+    private void OnEnemyMissed(BaseEnemy enemy)
     {
-        updateScore(-enemy.ScoreValue);
+        UpdateScore(-enemy.ScoreValue);
     }
 
 
-    private void onEnemyDestroyed(BaseEnemy destroyedEnemy)
+    private void OnEnemyDestroyed(BaseEnemy destroyedEnemy)
     {
-        updateScore(destroyedEnemy.ScoreValue);
+        UpdateScore(destroyedEnemy.ScoreValue);
     }
 
-    private void onPlayerDestroyed()
+    private void OnPlayerDestroyed()
     {
         GameOverLabel.Visible = true;
-        GameEvents.EnemyExited -= onEnemyMissed;
+        GameEvents.EnemyExited -= OnEnemyMissed;
     }
 
-    private void updateScore(int scoreValue)
+    private void UpdateScore(int scoreValue)
     {
         score += scoreValue;
         score = score < 0 ? 0 : score;
@@ -48,8 +48,8 @@ public partial class UI : CanvasLayer
     {
         base.Dispose(disposing);
 
-        GameEvents.EnemyDestroyed -= onEnemyDestroyed;
-        GameEvents.GameOver -= onPlayerDestroyed;
-        GameEvents.EnemyExited -= onEnemyMissed;
+        GameEvents.EnemyDestroyed -= OnEnemyDestroyed;
+        GameEvents.GameOver -= OnPlayerDestroyed;
+        GameEvents.EnemyExited -= OnEnemyMissed;
     }
 }

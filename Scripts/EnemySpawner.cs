@@ -21,16 +21,16 @@ public partial class EnemySpawner : Node2D
 		enemiesCanSpawn = true;
 		timer = GetNode("Timer") as Timer;
 
-		timer.Timeout += onTimerTimeOut;
-		GameEvents.PlayerDestroyed += onPlayerDestroyed;
+		timer.Timeout += OnTimerTimeOut;
+		GameEvents.PlayerDestroyed += OnPlayerDestroyed;
 	}
 
-	private void onPlayerDestroyed(BaseEnemy killer)
+	private void OnPlayerDestroyed(BaseEnemy killer)
 	{
 		enemiesCanSpawn = false;
 	}
 
-	private void onTimerTimeOut()
+	private void OnTimerTimeOut()
 	{
 		SpawnRandomEnemy(enemies);
 	}
@@ -55,6 +55,6 @@ public partial class EnemySpawner : Node2D
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
-		GameEvents.PlayerDestroyed -= onPlayerDestroyed;
+		GameEvents.PlayerDestroyed -= OnPlayerDestroyed;
     }
 }

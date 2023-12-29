@@ -16,17 +16,17 @@ public partial class Player : Node2D
     {
         base._Ready();
 
-        CollisionArea.AreaEntered += onAreaEntered;
+        CollisionArea.AreaEntered += OnAreaEntered;
     }
 
     public override void _Process(double delta)
     {
         base._Process(delta);
 
-        handleInput();
+        HandleInput();
     }
 
-    private void onAreaEntered(Area2D area)
+    private void OnAreaEntered(Area2D area)
     {
         var enemy = area.GetParent() as BaseEnemy;
         QueueFree();
@@ -34,17 +34,17 @@ public partial class Player : Node2D
         GameEvents.PlayerDestroyed?.Invoke(enemy);
     }
 
-    private void handleInput()
+    private void HandleInput()
     {
-        followMouse();
+        FollowMouse();
 
         if (Input.IsActionJustPressed("primary"))
         {
-            fireLaser();
+            FireLaser();
         }
     }
 
-    private void fireLaser()
+    private void FireLaser()
     {
         var laser = LaserScene.Instantiate<Laser>();
         laser.Position = Position;
@@ -52,7 +52,7 @@ public partial class Player : Node2D
     }
 
 
-    private void followMouse()
+    private void FollowMouse()
     {
         var newPosition = Position;
         newPosition.X = Mathf.Clamp(GetGlobalMousePosition().X, 0 + Padding, 540 - Padding);

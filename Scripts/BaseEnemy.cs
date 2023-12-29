@@ -29,8 +29,8 @@ public partial class BaseEnemy : Node2D
 
 		onScreenNotifier = GetNode<VisibleOnScreenNotifier2D>("VisibleOnScreenNotifier2D");
 
-		CollisionArea.AreaEntered += onBodyEntered;
-		onScreenNotifier.ScreenExited += onScreenExited;
+		CollisionArea.AreaEntered += OnBodyEntered;
+		onScreenNotifier.ScreenExited += OnScreenExited;
 
         timer = new Timer
         {
@@ -42,7 +42,7 @@ public partial class BaseEnemy : Node2D
 		timer.Timeout += Shoot;
     }
 
-    private void onScreenExited()
+    private void OnScreenExited()
     {
 		QueueFree();
 		GameEvents.EnemyExited?.Invoke(this);
@@ -70,7 +70,7 @@ public partial class BaseEnemy : Node2D
         AddSibling(laser);
     }
 
-    private void onBodyEntered(Node2D body)
+    private void OnBodyEntered(Node2D body)
 	{
 		QueueFree();
 		GameEvents.EnemyDestroyed?.Invoke(this);

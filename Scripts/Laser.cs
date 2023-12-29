@@ -14,7 +14,7 @@ public partial class Laser : Node2D
     {
         base._Ready();
 
-        CollisionArea.AreaEntered += onAreaEntered;
+        CollisionArea.AreaEntered += OnAreaEntered;
     }
 
     public override void _Process(double delta)
@@ -26,7 +26,7 @@ public partial class Laser : Node2D
         Position = newPosition;
     }
 
-    private void onAreaEntered(Area2D area)
+    private void OnAreaEntered(Area2D area)
     {
         QueueFree();
     }
