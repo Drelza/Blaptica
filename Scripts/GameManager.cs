@@ -39,9 +39,7 @@ public partial class GameManager : Node
     {
         gameState = GameState.GAME_OVER;
 
-        GameEvents.GameOverEventHandler temp = GameEvents.GameOver;
-        if (temp != null)
-            temp();
+        GameEvents.GameOver?.Invoke();
     }
 
     protected override void Dispose(bool disposing)

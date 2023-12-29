@@ -73,8 +73,6 @@ public partial class BaseEnemy : Node2D
     private void onBodyEntered(Node2D body)
 	{
 		QueueFree();
-
-		if (GameEvents.EnemyDestroyed != null)
-			GameEvents.EnemyDestroyed(this);
+		GameEvents.EnemyDestroyed?.Invoke(this);
 	}
 }

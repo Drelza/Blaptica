@@ -31,9 +31,7 @@ public partial class Player : Node2D
         var enemy = area.GetParent() as BaseEnemy;
         QueueFree();
 
-        GameEvents.PlayerDestroyedEventHandler temp = GameEvents.PlayerDestroyed;
-        if (temp != null)
-            temp(enemy);
+        GameEvents.PlayerDestroyed?.Invoke(enemy);
     }
 
     private void handleInput()

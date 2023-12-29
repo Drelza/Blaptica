@@ -51,4 +51,10 @@ public partial class EnemySpawner : Node2D
 			AddSibling(newEnemy);
 		}
 	}
+
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+		GameEvents.PlayerDestroyed -= onPlayerDestroyed;
+    }
 }
