@@ -38,6 +38,7 @@ public partial class BaseEnemy : Node2D
             Autostart = true,
             WaitTime = LaserInterval
         };
+
 		AddChild(timer);
 		timer.Timeout += Shoot;
     }
@@ -61,7 +62,6 @@ public partial class BaseEnemy : Node2D
         newPosition.Y += Speed * (float)delta;
         Position = newPosition;
     }
-
 
     protected void Shoot()
     {

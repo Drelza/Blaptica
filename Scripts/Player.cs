@@ -51,7 +51,6 @@ public partial class Player : Node2D
         AddSibling(laser);
     }
 
-
     private void FollowMouse()
     {
         var newPosition = Position;
