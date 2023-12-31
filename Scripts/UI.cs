@@ -33,7 +33,6 @@ public partial class UI : CanvasLayer
     private void OnPlayerDestroyed()
     {
         GameOverLabel.Visible = true;
-        GameEvents.EnemyExited -= OnEnemyMissed;
     }
 
     private void UpdateScore(int scoreValue)

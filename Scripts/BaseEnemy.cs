@@ -31,6 +31,7 @@ public partial class BaseEnemy : Node2D
 
 		CollisionArea.AreaEntered += OnBodyEntered;
 		onScreenNotifier.ScreenExited += OnScreenExited;
+		GameEvents.GameOver += OnGameOver;
 
         timer = new Timer
         {
@@ -43,8 +44,15 @@ public partial class BaseEnemy : Node2D
 		timer.Timeout += Shoot;
     }
 
+    private void OnGameOver()
+    {
+		QueueFree();
+    }
+
+
     private void OnScreenExited()
     {
+		// TODO: Delay with Tween
 		QueueFree();
 		GameEvents.EnemyExited?.Invoke(this);
     }
@@ -77,4 +85,10 @@ public partial class BaseEnemy : Node2D
 		if (body.GetParent() is Laser)
 			GameEvents.PlayerKilledEnemy?.Invoke(ScoreValue);
 	}
+
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+		GameEvents.GameOver -= OnGameOver;
+    }
 }

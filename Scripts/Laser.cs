@@ -15,6 +15,7 @@ public partial class Laser : Node2D
         base._Ready();
 
         CollisionArea.AreaEntered += OnAreaEntered;
+        GameEvents.GameOver += OnGameOver;
     }
 
     public override void _Process(double delta)
@@ -29,5 +30,16 @@ public partial class Laser : Node2D
     private void OnAreaEntered(Area2D area)
     {
         QueueFree();
+    }
+
+    private void OnGameOver()
+    {
+        QueueFree();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+        GameEvents.GameOver -= OnGameOver;
     }
 }
