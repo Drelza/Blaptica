@@ -73,6 +73,8 @@ public partial class BaseEnemy : Node2D
     private void OnBodyEntered(Node2D body)
 	{
 		QueueFree();
-		GameEvents.EnemyDestroyed?.Invoke(this);
+		
+		if (body.GetParent() is Laser)
+			GameEvents.PlayerKilledEnemy?.Invoke(ScoreValue);
 	}
 }

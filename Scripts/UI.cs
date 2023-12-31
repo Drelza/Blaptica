@@ -15,7 +15,7 @@ public partial class UI : CanvasLayer
     {
         base._Ready();
 
-        GameEvents.EnemyDestroyed += OnEnemyDestroyed;
+        GameEvents.PlayerKilledEnemy += OnPlayerKilledEnemy;
         GameEvents.GameOver += OnPlayerDestroyed;
         GameEvents.EnemyExited += OnEnemyMissed;
     }
@@ -25,10 +25,9 @@ public partial class UI : CanvasLayer
         UpdateScore(-enemy.ScoreValue);
     }
 
-
-    private void OnEnemyDestroyed(BaseEnemy destroyedEnemy)
+    private void OnPlayerKilledEnemy(int score)
     {
-        UpdateScore(destroyedEnemy.ScoreValue);
+        UpdateScore(score);
     }
 
     private void OnPlayerDestroyed()
@@ -48,7 +47,7 @@ public partial class UI : CanvasLayer
     {
         base.Dispose(disposing);
 
-        GameEvents.EnemyDestroyed -= OnEnemyDestroyed;
+        GameEvents.PlayerKilledEnemy -= OnPlayerKilledEnemy;
         GameEvents.GameOver -= OnPlayerDestroyed;
         GameEvents.EnemyExited -= OnEnemyMissed;
     }

@@ -3,8 +3,13 @@ using Godot;
 
 public partial class GameEvents : Node
 {
-    public delegate void EnemyDestroyedEventHandler(BaseEnemy destroyedEnemy);
-    public static EnemyDestroyedEventHandler EnemyDestroyed;
+    /// <param name="score">Enemy point value</param>
+    public delegate void PlayerKilledEnemyEventHandler(int score);
+
+    /// <summary>
+    /// Fired whenever the player kills an enemy through legitimate means
+    /// </summary>
+    public static PlayerKilledEnemyEventHandler PlayerKilledEnemy;
 
     public delegate void PlayerDestroyedEventHandler(BaseEnemy killer);
     public static PlayerDestroyedEventHandler PlayerDestroyed;
