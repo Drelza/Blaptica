@@ -7,6 +7,7 @@
 script = ExtResource("1_l2mj3")
 CollisionArea = NodePath("Area2D")
 LaserScene = ExtResource("2_om4g0")
+LaserInterval = 0.9
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
