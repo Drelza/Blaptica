@@ -1,30 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://cqxwdp37sqmf2"]
+[gd_scene load_steps=4 format=3 uid="uid://cqxwdp37sqmf2"]
 
 [ext_resource type="FontFile" uid="uid://ct8seili5nhde" path="res://Assets/Space Shooter Redux/Bonus/kenvector_future.ttf" id="1_4mc2n"]
 [ext_resource type="Script" path="res://Scripts/UI.cs" id="1_d5u0a"]
-[ext_resource type="LabelSettings" uid="uid://ccvw4ucqwrrsu" path="res://Assets/Resources/ScoreSettings.tres" id="2_lmaax"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_v3nj8"]
 font = ExtResource("1_4mc2n")
 font_size = 30
 
-[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("ScoreLabel", "GameOverLabel")]
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("GameOverLabel", "ProgressBar")]
 script = ExtResource("1_d5u0a")
-ScoreLabel = NodePath("MarginContainer/ScoreLabel")
 GameOverLabel = NodePath("CenterContainer/GameOverLabel")
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-
-[node name="ScoreLabel" type="Label" parent="MarginContainer"]
-layout_mode = 2
-text = "0"
-label_settings = ExtResource("2_lmaax")
-horizontal_alignment = 1
-vertical_alignment = 1
+ProgressBar = NodePath("MarginContainer/ProgressBar")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchors_preset = 14
@@ -41,3 +27,19 @@ visible = false
 layout_mode = 2
 text = "Game Over"
 label_settings = SubResource("LabelSettings_v3nj8")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer"]
+modulate = Color(4.81307e-07, 0, 0.724554, 1)
+custom_minimum_size = Vector2(0, 27)
+layout_mode = 2
+max_value = 10.0
+value = 5.0
+show_percentage = false

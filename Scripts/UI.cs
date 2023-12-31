@@ -1,53 +1,64 @@
 using System;
+using System.ComponentModel;
+using System.Security.Cryptography.X509Certificates;
 using Godot;
 
 public partial class UI : CanvasLayer
 {
     [Export]
-    public Label ScoreLabel;
-
-    [Export]
     public Label GameOverLabel;
 
-    private int score;
+    [Export]
+    public ProgressBar ProgressBar;
 
     public override void _Ready()
     {
         base._Ready();
 
         GameEvents.PlayerKilledEnemy += OnPlayerKilledEnemy;
-        GameEvents.GameOver += OnPlayerDestroyed;
+        GameEvents.GameOver += OnGameOver;
         GameEvents.EnemyExited += OnEnemyMissed;
+        GameEvents.PlayerHit += OnPlayerHit;
+        ProgressBar.ValueChanged += OnProgressBarValueChanged;
     }
 
-    private void OnEnemyMissed(BaseEnemy enemy)
+    #region EventListeners
+
+    private void OnProgressBarValueChanged(double value)
     {
-        UpdateScore(-enemy.ScoreValue);
+        if (value == 0)
+            GameEvents.GameOver?.Invoke();
     }
 
-    private void OnPlayerKilledEnemy(int score)
+    private void OnEnemyMissed(double enemyScoreValue)
     {
-        UpdateScore(score);
+        ProgressBar.Value -= enemyScoreValue;
     }
 
-    private void OnPlayerDestroyed()
+    private void OnPlayerKilledEnemy(double enemyScoreValue)
+    {
+        ProgressBar.Value += enemyScoreValue;
+    }
+
+    private void OnPlayerHit()
+    {
+        ProgressBar.Value -= 2;
+    }
+
+    private void OnGameOver()
     {
         GameOverLabel.Visible = true;
     }
 
-    private void UpdateScore(int scoreValue)
-    {
-        score += scoreValue;
-        score = score < 0 ? 0 : score;
-        ScoreLabel.Text = score.ToString();
-    }
+    #endregion
 
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
 
         GameEvents.PlayerKilledEnemy -= OnPlayerKilledEnemy;
-        GameEvents.GameOver -= OnPlayerDestroyed;
+        GameEvents.GameOver -= OnGameOver;
         GameEvents.EnemyExited -= OnEnemyMissed;
+        GameEvents.PlayerHit -= OnPlayerHit;
     }
 }

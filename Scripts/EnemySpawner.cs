@@ -22,10 +22,10 @@ public partial class EnemySpawner : Node2D
 		timer = GetNode("Timer") as Timer;
 
 		timer.Timeout += OnTimerTimeOut;
-		GameEvents.PlayerDestroyed += OnPlayerDestroyed;
+		GameEvents.GameOver += OnGameOver;
 	}
 
-	private void OnPlayerDestroyed(BaseEnemy killer)
+	private void OnGameOver()
 	{
 		enemiesCanSpawn = false;
 	}
@@ -55,6 +55,6 @@ public partial class EnemySpawner : Node2D
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
-		GameEvents.PlayerDestroyed -= OnPlayerDestroyed;
+		GameEvents.GameOver -= OnGameOver;
     }
 }

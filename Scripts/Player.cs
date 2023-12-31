@@ -17,6 +17,7 @@ public partial class Player : Node2D
         base._Ready();
 
         CollisionArea.AreaEntered += OnAreaEntered;
+        GameEvents.GameOver += OnGameOver;
     }
 
     public override void _Process(double delta)
@@ -28,10 +29,12 @@ public partial class Player : Node2D
 
     private void OnAreaEntered(Area2D area)
     {
-        var enemy = area.GetParent() as BaseEnemy;
-        QueueFree();
+        GameEvents.PlayerHit?.Invoke();
+    }
 
-        GameEvents.PlayerDestroyed?.Invoke(enemy);
+    private void OnGameOver()
+    {
+        QueueFree();
     }
 
     private void HandleInput()
@@ -56,5 +59,12 @@ public partial class Player : Node2D
         var newPosition = Position;
         newPosition.X = Mathf.Clamp(GetGlobalMousePosition().X, 0 + Padding, 540 - Padding);
         Position = newPosition;
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+
+        GameEvents.GameOver -= OnGameOver;
     }
 }
