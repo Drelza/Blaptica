@@ -11,7 +11,3 @@
 - Improve scoring system
   - Arcade style leaderboard and name saving
 - DDR style performance bar
-
-# Issues
-
-- Player earns a point when colliding with the enemy and losing the game.
