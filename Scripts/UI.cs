@@ -4,9 +4,6 @@ using Godot;
 public partial class UI : CanvasLayer
 {
     [Export]
-    public Label ScoreLabel;
-
-    [Export]
     public Label GameOverLabel;
 
     private int score;
@@ -39,7 +36,6 @@ public partial class UI : CanvasLayer
     {
         score += scoreValue;
         score = score < 0 ? 0 : score;
-        ScoreLabel.Text = score.ToString();
     }
 
     protected override void Dispose(bool disposing)
