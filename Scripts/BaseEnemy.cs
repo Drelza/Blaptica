@@ -44,17 +44,6 @@ public partial class BaseEnemy : Node2D
 		timer.Timeout += Shoot;
     }
 
-    private void OnGameOver()
-    {
-		QueueFree();
-    }
-
-    private void OnScreenExited()
-    {
-		GameEvents.EnemyExited?.Invoke(ScoreValue);
-        CreateTween().TweenCallback(Callable.From(QueueFree)).SetDelay(1f);
-    }
-
     public override void _Process(double delta)
     {
         base._Process(delta);
@@ -74,6 +63,17 @@ public partial class BaseEnemy : Node2D
 		var laser = LaserScene.Instantiate<Laser>();
 		laser.Position = Position;
         AddSibling(laser);
+    }
+
+    private void OnGameOver()
+    {
+		QueueFree();
+    }
+
+    private void OnScreenExited()
+    {
+		GameEvents.EnemyExited?.Invoke(ScoreValue);
+        CreateTween().TweenCallback(Callable.From(QueueFree)).SetDelay(1f);
     }
 
     private void OnBodyEntered(Node2D body)

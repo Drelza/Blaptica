@@ -25,16 +25,6 @@ public partial class EnemySpawner : Node2D
 		GameEvents.GameOver += OnGameOver;
 	}
 
-	private void OnGameOver()
-	{
-		enemiesCanSpawn = false;
-	}
-
-	private void OnTimerTimeOut()
-	{
-		SpawnRandomEnemy(enemies);
-	}
-
     private void SpawnRandomEnemy(PackedScene[] enemies)
     {
 		var randomEnemyScene = enemies[GD.Randi() % enemies.Length];
@@ -50,6 +40,16 @@ public partial class EnemySpawner : Node2D
 			newEnemy.Position = new Vector2(xPos, 0);
 			AddSibling(newEnemy);
 		}
+	}
+
+	private void OnGameOver()
+	{
+		enemiesCanSpawn = false;
+	}
+
+	private void OnTimerTimeOut()
+	{
+		SpawnRandomEnemy(enemies);
 	}
 
     protected override void Dispose(bool disposing)

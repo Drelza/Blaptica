@@ -27,16 +27,6 @@ public partial class Player : Node2D
         HandleInput();
     }
 
-    private void OnAreaEntered(Area2D area)
-    {
-        GameEvents.PlayerHit?.Invoke();
-    }
-
-    private void OnGameOver()
-    {
-        QueueFree();
-    }
-
     private void HandleInput()
     {
         FollowMouse();
@@ -59,6 +49,16 @@ public partial class Player : Node2D
         var newPosition = Position;
         newPosition.X = Mathf.Clamp(GetGlobalMousePosition().X, 0 + Padding, 540 - Padding);
         Position = newPosition;
+    }
+
+    private void OnAreaEntered(Area2D area)
+    {
+        GameEvents.PlayerHit?.Invoke();
+    }
+
+    private void OnGameOver()
+    {
+        QueueFree();
     }
 
     protected override void Dispose(bool disposing)
