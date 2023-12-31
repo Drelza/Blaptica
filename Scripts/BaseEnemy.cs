@@ -49,12 +49,10 @@ public partial class BaseEnemy : Node2D
 		QueueFree();
     }
 
-
     private void OnScreenExited()
     {
-		// TODO: Delay with Tween
-		QueueFree();
 		GameEvents.EnemyExited?.Invoke(ScoreValue);
+        CreateTween().TweenCallback(Callable.From(QueueFree)).SetDelay(1f);
     }
 
     public override void _Process(double delta)
