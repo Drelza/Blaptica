@@ -7,10 +7,10 @@
 font = ExtResource("1_4mc2n")
 font_size = 30
 
-[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("ScoreLabel", "GameOverLabel")]
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("GameOverLabel", "ProgressBar")]
 script = ExtResource("1_d5u0a")
-ScoreLabel = NodePath("")
 GameOverLabel = NodePath("CenterContainer/GameOverLabel")
+ProgressBar = NodePath("MarginContainer/ProgressBar")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchors_preset = 14
@@ -27,3 +27,19 @@ visible = false
 layout_mode = 2
 text = "Game Over"
 label_settings = SubResource("LabelSettings_v3nj8")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer"]
+modulate = Color(4.81307e-07, 0, 0.724554, 1)
+custom_minimum_size = Vector2(0, 27)
+layout_mode = 2
+max_value = 10.0
+value = 5.0
+show_percentage = false

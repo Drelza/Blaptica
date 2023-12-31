@@ -17,8 +17,8 @@ public partial class GameManager : Node
         base._Ready();
 
         gameState = GameState.PLAYING;
-
-        GameEvents.PlayerDestroyed += OnPlayerDestroyed;
+        
+        GameEvents.GameOver += OnGameOver;
     }
 
     public override void _Process(double delta)
@@ -35,17 +35,13 @@ public partial class GameManager : Node
         }
     }
 
-    private void OnPlayerDestroyed(BaseEnemy killer)
+    private void OnGameOver()
     {
         gameState = GameState.GAME_OVER;
-
-        GameEvents.GameOver?.Invoke();
     }
 
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
-
-        GameEvents.PlayerDestroyed -= OnPlayerDestroyed;
     }
 }

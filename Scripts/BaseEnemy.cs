@@ -54,7 +54,7 @@ public partial class BaseEnemy : Node2D
     {
 		// TODO: Delay with Tween
 		QueueFree();
-		GameEvents.EnemyExited?.Invoke(this);
+		GameEvents.EnemyExited?.Invoke(ScoreValue);
     }
 
     public override void _Process(double delta)
