@@ -13,7 +13,7 @@ public partial class ScoreBar : ProgressBar
         base._Ready();
 
         GameEvents.EnemyExited += OnEnemyMissed;
-        GameEvents.PlayerKilledEnemy += OnPlayerKilledEnemy;
+        GameEvents.EnemyDestroyed += OnPlayerKilledEnemy;
         GameEvents.PlayerHit += OnPlayerHit;
         ValueChanged += OnProgressBarValueChanged;
     }
@@ -62,7 +62,7 @@ public partial class ScoreBar : ProgressBar
         base.Dispose(disposing);
 
         GameEvents.EnemyExited -= OnEnemyMissed;
-        GameEvents.PlayerKilledEnemy -= OnPlayerKilledEnemy;
+        GameEvents.EnemyDestroyed -= OnPlayerKilledEnemy;
         GameEvents.PlayerHit -= OnPlayerHit;
     }
 }

@@ -9,7 +9,7 @@ public partial class GameEvents : Node
     /// <summary>
     /// Fired whenever the player kills an enemy through legitimate means
     /// </summary>
-    public static PlayerKilledEnemyEventHandler PlayerKilledEnemy;
+    public static PlayerKilledEnemyEventHandler EnemyDestroyed;
 
     public delegate void GameOverEventHandler();
     public static GameOverEventHandler GameOver;
