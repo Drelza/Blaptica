@@ -1,6 +1,3 @@
-using Godot;
-using System;
-
 public partial class BlueEnemy : BaseEnemy
 {
     public override void _Ready()
