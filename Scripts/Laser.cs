@@ -10,6 +10,9 @@ public partial class Laser : Node2D
     [Export]
     public Area2D CollisionArea;
 
+    [Export]
+    public int Damage = 1;
+
     public override void _Ready()
     {
         base._Ready();
