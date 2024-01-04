@@ -6,48 +6,27 @@ using Godot;
 public partial class UI : CanvasLayer
 {
     [Export]
-    public Label GameOverLabel;
+    public Control GameOverContainer;
 
     [Export]
-    public ProgressBar ProgressBar;
+    public ScoreBar ScoreBar;
+
+    [Export]
+    public Label ScoreLabel;
 
     public override void _Ready()
     {
         base._Ready();
 
-        GameEvents.PlayerKilledEnemy += OnPlayerKilledEnemy;
         GameEvents.GameOver += OnGameOver;
-        GameEvents.EnemyExited += OnEnemyMissed;
-        GameEvents.PlayerHit += OnPlayerHit;
-        ProgressBar.ValueChanged += OnProgressBarValueChanged;
     }
 
     #region EventListeners
 
-    private void OnProgressBarValueChanged(double value)
-    {
-        if (value == 0)
-            GameEvents.GameOver?.Invoke();
-    }
-
-    private void OnEnemyMissed(double enemyScoreValue)
-    {
-        ProgressBar.Value -= enemyScoreValue;
-    }
-
-    private void OnPlayerKilledEnemy(double enemyScoreValue)
-    {
-        ProgressBar.Value += enemyScoreValue;
-    }
-
-    private void OnPlayerHit()
-    {
-        ProgressBar.Value -= 2;
-    }
-
     private void OnGameOver()
     {
-        GameOverLabel.Visible = true;
+        GameOverContainer.Visible = true;
+        ScoreLabel.Text = $"Score: {ScoreBar.Score}";
     }
 
     #endregion
@@ -56,9 +35,6 @@ public partial class UI : CanvasLayer
     {
         base.Dispose(disposing);
 
-        GameEvents.PlayerKilledEnemy -= OnPlayerKilledEnemy;
         GameEvents.GameOver -= OnGameOver;
-        GameEvents.EnemyExited -= OnEnemyMissed;
-        GameEvents.PlayerHit -= OnPlayerHit;
     }
 }
