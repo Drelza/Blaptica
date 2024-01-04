@@ -1,5 +1,3 @@
-using System;
-using System.Diagnostics.Tracing;
 using Godot;
 
 [GlobalClass]
@@ -20,18 +18,24 @@ public partial class BaseEnemy : Node2D
 	[Export]
 	public int ScoreValue = 1;
 
+    [Export]
+    public int MaxHealth = 1;
+
+    protected Health health;
 	private Timer timer;
 	private VisibleOnScreenNotifier2D onScreenNotifier;
 
-	public override void _Ready()
-	{
-		base._Ready();
+    public override void _Ready()
+    {
+        base._Ready();
 
-		onScreenNotifier = GetNode<VisibleOnScreenNotifier2D>("VisibleOnScreenNotifier2D");
+        onScreenNotifier = GetNode<VisibleOnScreenNotifier2D>("VisibleOnScreenNotifier2D");
+        health = new Health(MaxHealth);
 
-		CollisionArea.AreaEntered += OnBodyEntered;
+        CollisionArea.AreaEntered += OnBodyEntered;
 		onScreenNotifier.ScreenExited += OnScreenExited;
 		GameEvents.GameOver += OnGameOver;
+        health.Depeleted += OnHealthDepleted;
 
         timer = new Timer
         {
@@ -40,8 +44,8 @@ public partial class BaseEnemy : Node2D
             WaitTime = LaserInterval
         };
 
-		AddChild(timer);
-		timer.Timeout += Shoot;
+        AddChild(timer);
+        timer.Timeout += Shoot;
     }
 
     public override void _Process(double delta)
@@ -78,11 +82,18 @@ public partial class BaseEnemy : Node2D
 
     private void OnBodyEntered(Node2D body)
 	{
-		QueueFree();
-		
-		if (body.GetParent() is Laser)
-			GameEvents.PlayerKilledEnemy?.Invoke(ScoreValue);
+        if (body.GetParent() is Laser)
+        {
+            var damage = body.GetParent<Laser>().Damage;
+            health.TakeDamage(damage);            
+        }
 	}
+
+    private void OnHealthDepleted()
+    {
+        QueueFree();
+        GameEvents.EnemyDestroyed?.Invoke(ScoreValue);
+    }
 
     protected override void Dispose(bool disposing)
     {
