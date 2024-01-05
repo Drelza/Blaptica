@@ -9,9 +9,6 @@ public partial class Main : Node
         base._Ready();
 
         GameState.SetPlaying();
-        
-        GameEvents.GameOver += OnGameOver;
-        ScoreBar.Emptied += OnProgressBarEmptied;
     }
 
     public override void _Process(double delta)
@@ -26,15 +23,5 @@ public partial class Main : Node
         {
             GetTree().ReloadCurrentScene();
         }
-    }
-
-    private void OnProgressBarEmptied()
-    {
-        GameEvents.GameOver?.Invoke();
-    }
-
-    private void OnGameOver()
-    {
-        GameState.SetGameOver();
     }
 }

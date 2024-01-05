@@ -18,6 +18,7 @@ config/icon="res://Assets/icon.svg"
 [autoload]
 
 GameEvents="*res://Scripts/GameEvents.cs"
+GameManager="*res://Scripts/GameManager.cs"
 
 [display]
 
