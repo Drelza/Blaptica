@@ -14,10 +14,10 @@ public partial class Main : Node
     public override void _Process(double delta)
     {
         base._Process(delta);
-        handleInput();
+        HandleInput();
     }
 
-    private void handleInput()
+    private void HandleInput()
     {
         if (GameState.IsGameOver && Input.IsActionJustPressed("ui_accept"))
         {
