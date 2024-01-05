@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class GameManager : Node
+public partial class Main : Node
 {
     public static bool IsGameOver => gameState == GameState.GAME_OVER;
 

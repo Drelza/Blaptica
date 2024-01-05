@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://dfmeyd5f3h1m5"]
+[gd_scene load_steps=10 format=3 uid="uid://dfmeyd5f3h1m5"]
 
+[ext_resource type="Script" path="res://Scripts/Main.cs" id="1_adoem"]
 [ext_resource type="Texture2D" uid="uid://doh6vd38c2r70" path="res://Assets/Space Shooter Redux/Backgrounds/darkPurple.png" id="1_k8k1i"]
 [ext_resource type="PackedScene" uid="uid://twkrd4l7tayv" path="res://Scenes/Player.tscn" id="2_1hnwa"]
 [ext_resource type="Script" path="res://Scripts/EnemySpawner.cs" id="3_widjv"]
@@ -29,6 +30,7 @@ _data = {
 }
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_adoem")
 
 [node name="Background" type="Node2D" parent="."]
 metadata/_edit_group_ = true
