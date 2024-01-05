@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 public partial class EnemySpawner : Node2D
@@ -11,21 +12,22 @@ public partial class EnemySpawner : Node2D
 	[Export]
 	public float Padding = 10;
 
-	private Timer timer;
+	[Export]
+    public double SpawnDelay = 1;
+
 	private bool enemiesCanSpawn;
 	private PackedScene[] enemies;
 
-	public override void _Ready()
+    public override void _Ready()
 	{
 		enemies = new PackedScene[] { RedEnemyScene, BlueEnemyScene };
 		enemiesCanSpawn = true;
-		timer = GetNode("Timer") as Timer;
+		CreateTween().SetLoops().TweenCallback(Callable.From(SpawnRandomEnemy)).SetDelay(SpawnDelay);
 
-		timer.Timeout += OnTimerTimeOut;
 		GameEvents.GameOver += OnGameOver;
 	}
 
-    private void SpawnRandomEnemy(PackedScene[] enemies)
+    private void SpawnRandomEnemy()
     {
 		var randomEnemyScene = enemies[GD.Randi() % enemies.Length];
 		SpawnEnemy(randomEnemyScene);
@@ -45,11 +47,6 @@ public partial class EnemySpawner : Node2D
 	private void OnGameOver()
 	{
 		enemiesCanSpawn = false;
-	}
-
-	private void OnTimerTimeOut()
-	{
-		SpawnRandomEnemy(enemies);
 	}
 
     protected override void Dispose(bool disposing)
