@@ -1,22 +1,14 @@
+using Blaptica;
 using Godot;
 using System;
 
 public partial class Main : Node
 {
-    public static bool IsGameOver => gameState == GameState.GAME_OVER;
-
-    private enum GameState
-    {
-        GAME_OVER, PLAYING
-    }
-
-    private static GameState gameState;
-
     public override void _Ready()
     {
         base._Ready();
 
-        gameState = GameState.PLAYING;
+        GameState.SetPlaying();
         
         GameEvents.GameOver += OnGameOver;
         ScoreBar.Emptied += OnProgressBarEmptied;
@@ -30,7 +22,7 @@ public partial class Main : Node
 
     private void handleInput()
     {
-        if (IsGameOver && Input.IsActionJustPressed("ui_accept"))
+        if (GameState.IsGameOver && Input.IsActionJustPressed("ui_accept"))
         {
             GetTree().ReloadCurrentScene();
         }
@@ -43,11 +35,6 @@ public partial class Main : Node
 
     private void OnGameOver()
     {
-        gameState = GameState.GAME_OVER;
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
+        GameState.SetGameOver();
     }
 }
