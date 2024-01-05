@@ -29,8 +29,8 @@ classDiagram
         List~Wave~ Waves
     }
 
-    `Main Node` -- Stage
-    `Main Node` -- UI
+    Main o-- Stage
+    Main o-- UI
     UI *-- ScoreBar
     Stage o-- Wave
     Wave o-- EnemySpawner
@@ -41,7 +41,6 @@ classDiagram
     BaseEnemy <|-- BlueEnemy
     BaseEnemy *-- Health
     BaseEnemy -- Laser
-
     EnemySpawner o-- BaseEnemy
 ```
 
