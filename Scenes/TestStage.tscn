@@ -1,0 +1,13 @@
+[gd_scene load_steps=5 format=3 uid="uid://bsurt5muo8etw"]
+
+[ext_resource type="PackedScene" uid="uid://bhr3p3c08gvvp" path="res://Scenes/Stage.tscn" id="1_4s3aw"]
+[ext_resource type="Script" path="res://Scripts/TestStage.cs" id="2_vrlsc"]
+[ext_resource type="PackedScene" uid="uid://dblfljtophvn0" path="res://Scenes/Enemies/RedEnemy.tscn" id="3_vdw7b"]
+[ext_resource type="PackedScene" uid="uid://d3cwm1vxfsmsq" path="res://Scenes/Enemies/BlueEnemy.tscn" id="4_se8ue"]
+
+[node name="TestStage" instance=ExtResource("1_4s3aw")]
+script = ExtResource("2_vrlsc")
+RedEnemyScene = ExtResource("3_vdw7b")
+BlueEnemyScene = ExtResource("4_se8ue")
+Padding = 10.0
+SpawnDelay = 1.0

@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public partial class EnemySpawner : Node2D
+public partial class TestStage : Stage
 {
 	[Export]
 	public PackedScene RedEnemyScene;
