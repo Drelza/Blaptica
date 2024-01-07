@@ -1,12 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dfmeyd5f3h1m5"]
+[gd_scene load_steps=7 format=3 uid="uid://dfmeyd5f3h1m5"]
 
 [ext_resource type="Script" path="res://Scripts/Main.cs" id="1_adoem"]
 [ext_resource type="Texture2D" uid="uid://doh6vd38c2r70" path="res://Assets/Space Shooter Redux/Backgrounds/darkPurple.png" id="1_k8k1i"]
 [ext_resource type="PackedScene" uid="uid://twkrd4l7tayv" path="res://Scenes/Player.tscn" id="2_1hnwa"]
-[ext_resource type="Script" path="res://Scripts/EnemySpawner.cs" id="3_widjv"]
-[ext_resource type="PackedScene" uid="uid://dblfljtophvn0" path="res://Scenes/Enemies/RedEnemy.tscn" id="4_y08jr"]
 [ext_resource type="PackedScene" uid="uid://cqxwdp37sqmf2" path="res://Scenes/UI.tscn" id="5_6wk4l"]
-[ext_resource type="PackedScene" uid="uid://d3cwm1vxfsmsq" path="res://Scenes/Enemies/BlueEnemy.tscn" id="5_qwb36"]
 
 [sub_resource type="Animation" id="Animation_cnjgo"]
 resource_name = "Scroll Background"
@@ -51,11 +48,5 @@ libraries = {
 
 [node name="Player" parent="." instance=ExtResource("2_1hnwa")]
 position = Vector2(270, 900)
-
-[node name="EnemySpawner" type="Node2D" parent="."]
-script = ExtResource("3_widjv")
-RedEnemyScene = ExtResource("4_y08jr")
-BlueEnemyScene = ExtResource("5_qwb36")
-Padding = 60.0
 
 [node name="UI" parent="." instance=ExtResource("5_6wk4l")]
