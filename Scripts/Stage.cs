@@ -1,6 +1,7 @@
 using Godot;
 using Blaptica;
 
+[GlobalClass]
 public partial class Stage : Node2D
 {
     public delegate void StageCompleteEventHandler();
