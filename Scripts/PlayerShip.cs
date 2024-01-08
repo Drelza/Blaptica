@@ -1,16 +1,10 @@
 using System;
 using Godot;
 
-public partial class Player : Node2D
+public partial class PlayerShip : Ship
 {
     [Export]
     public float Padding = 35;
-
-    [Export]
-    public PackedScene LaserScene;
-
-    [Export]
-    public Area2D CollisionArea;
 
     public override void _Ready()
     {
@@ -33,15 +27,8 @@ public partial class Player : Node2D
 
         if (Input.IsActionJustPressed("primary"))
         {
-            FireLaser();
+            Shoot();
         }
-    }
-
-    private void FireLaser()
-    {
-        var laser = LaserScene.Instantiate<Laser>();
-        laser.Position = Position;
-        AddSibling(laser);
     }
 
     private void FollowMouse()

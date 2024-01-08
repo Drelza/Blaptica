@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://bn0n2sitnf3di"]
+
+[ext_resource type="PackedScene" uid="uid://sf8a8djdx64s" path="res://Scenes/Ships/Enemies/EnemyShip.tscn" id="1_3por5"]
+[ext_resource type="Script" path="res://Scripts/RedEnemy.cs" id="2_jfhop"]
+[ext_resource type="Texture2D" uid="uid://rnicikt0yvkf" path="res://Assets/Space Shooter Redux/PNG/Enemies/enemyRed2.png" id="2_qgio2"]
+[ext_resource type="PackedScene" uid="uid://b3ya430y2rx8r" path="res://Scenes/EnemyLaser.tscn" id="3_irm85"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k75ev"]
+radius = 29.0172
+
+[node name="RedEnemyShip" instance=ExtResource("1_3por5")]
+script = ExtResource("2_jfhop")
+LaserScene = ExtResource("3_irm85")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_qgio2")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_k75ev")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
+scale = Vector2(3.7, 3)

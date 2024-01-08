@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://sf8a8djdx64s"]
+
+[ext_resource type="PackedScene" uid="uid://6a4knn5jufl4" path="res://Scenes/Ships/Ship.tscn" id="1_kphjt"]
+[ext_resource type="Script" path="res://Scripts/EnemyShip.cs" id="2_h7k4t"]
+
+[node name="EnemyShip" node_paths=PackedStringArray("CollisionArea") instance=ExtResource("1_kphjt")]
+script = ExtResource("2_h7k4t")
+LaserScene = null
+Speed = 200.0
+LaserInterval = 0.4
+ScoreValue = 1
+MaxHealth = 1
+CollisionArea = NodePath("Area2D")
+
+[node name="Area2D" parent="." index="1"]
+collision_layer = 2
+collision_mask = 4
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="2"]
