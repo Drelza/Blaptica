@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dfmeyd5f3h1m5"]
+[gd_scene load_steps=8 format=3 uid="uid://dfmeyd5f3h1m5"]
 
 [ext_resource type="Texture2D" uid="uid://doh6vd38c2r70" path="res://Assets/Space Shooter Redux/Backgrounds/darkPurple.png" id="1_k8k1i"]
 [ext_resource type="PackedScene" uid="uid://bsurt5muo8etw" path="res://Scenes/TestStage.tscn" id="3_pb4mm"]
 [ext_resource type="Script" path="res://Scripts/StageLoader.cs" id="3_xlj1w"]
+[ext_resource type="PackedScene" uid="uid://b117wirwmg5ag" path="res://Scenes/Ships/PlayerShip.tscn" id="4_hd41j"]
 [ext_resource type="PackedScene" uid="uid://cqxwdp37sqmf2" path="res://Scenes/UI.tscn" id="5_6wk4l"]
 
 [sub_resource type="Animation" id="Animation_cnjgo"]
@@ -50,3 +51,5 @@ script = ExtResource("3_xlj1w")
 StageScenes = Array[PackedScene]([ExtResource("3_pb4mm")])
 
 [node name="UI" parent="." instance=ExtResource("5_6wk4l")]
+
+[node name="PlayerShip" parent="." instance=ExtResource("4_hd41j")]
