@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://dfmeyd5f3h1m5"]
 
-[ext_resource type="Script" path="res://Scripts/Main.cs" id="1_adoem"]
 [ext_resource type="Texture2D" uid="uid://doh6vd38c2r70" path="res://Assets/Space Shooter Redux/Backgrounds/darkPurple.png" id="1_k8k1i"]
 [ext_resource type="PackedScene" uid="uid://twkrd4l7tayv" path="res://Scenes/Player.tscn" id="2_1hnwa"]
-[ext_resource type="PackedScene" uid="uid://bsurt5muo8etw" path="res://Scenes/TestStage.tscn" id="2_q3ycw"]
+[ext_resource type="PackedScene" uid="uid://bsurt5muo8etw" path="res://Scenes/TestStage.tscn" id="2_n5jx4"]
+[ext_resource type="Script" path="res://Scripts/StageLoader.cs" id="3_xlj1w"]
 [ext_resource type="PackedScene" uid="uid://cqxwdp37sqmf2" path="res://Scenes/UI.tscn" id="5_6wk4l"]
 
 [sub_resource type="Animation" id="Animation_cnjgo"]
@@ -28,8 +28,6 @@ _data = {
 }
 
 [node name="Main" type="Node2D"]
-script = ExtResource("1_adoem")
-Stage = ExtResource("2_q3ycw")
 
 [node name="Background" type="Node2D" parent="."]
 metadata/_edit_group_ = true
@@ -47,6 +45,10 @@ autoplay = "Scroll Background"
 libraries = {
 "": SubResource("AnimationLibrary_dgcvm")
 }
+
+[node name="StageLoader" type="Node2D" parent="."]
+script = ExtResource("3_xlj1w")
+StageScenes = Array[PackedScene]([ExtResource("2_n5jx4"), ExtResource("2_n5jx4")])
 
 [node name="Player" parent="." instance=ExtResource("2_1hnwa")]
 position = Vector2(270, 900)

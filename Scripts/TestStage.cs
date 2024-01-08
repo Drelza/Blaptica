@@ -1,4 +1,5 @@
 using System;
+using Blaptica;
 using Godot;
 
 public partial class TestStage : Stage
@@ -23,8 +24,18 @@ public partial class TestStage : Stage
 		enemies = new PackedScene[] { RedEnemyScene, BlueEnemyScene };
 		enemiesCanSpawn = true;
 		CreateTween().SetLoops().TweenCallback(Callable.From(SpawnRandomEnemy)).SetDelay(SpawnDelay);
+		CreateTween().TweenCallback(Callable.From(EndStage)).SetDelay(10);
 
 		GameEvents.GameOver += OnGameOver;
+	}
+
+	private void EndStage()
+	{
+		if (GameState.IsGameOver)
+			return;
+			
+		GD.Print("Test Stage Complete");
+		StageCompleted?.Invoke();
 	}
 
     private void SpawnRandomEnemy()
