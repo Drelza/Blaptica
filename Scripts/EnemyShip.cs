@@ -1,12 +1,9 @@
 using Godot;
+using System;
 
-[GlobalClass]
-public partial class BaseEnemy : Node2D
+public partial class EnemyShip : Ship
 {
-	[Export]
-	public Area2D CollisionArea;
-
-	[Export]
+    [Export]
 	public PackedScene LaserScene;
 
 	[Export]
@@ -22,8 +19,7 @@ public partial class BaseEnemy : Node2D
     public int MaxHealth = 1;
 
     protected Health health;
-	private Timer timer;
-	private VisibleOnScreenNotifier2D onScreenNotifier;
+	protected VisibleOnScreenNotifier2D onScreenNotifier;
 
     public override void _Ready()
     {
@@ -31,35 +27,16 @@ public partial class BaseEnemy : Node2D
 
         onScreenNotifier = GetNode<VisibleOnScreenNotifier2D>("VisibleOnScreenNotifier2D");
         health = new Health(MaxHealth);
-
-        CollisionArea.AreaEntered += OnBodyEntered;
-		onScreenNotifier.ScreenExited += OnScreenExited;
-		GameEvents.GameOver += OnGameOver;
         health.Depeleted += OnHealthDepleted;
-
-        timer = new Timer
-        {
-            OneShot = false,
-            Autostart = true,
-            WaitTime = LaserInterval
-        };
-
-        AddChild(timer);
-        timer.Timeout += Shoot;
+		GameEvents.GameOver += OnGameOver;
+		onScreenNotifier.ScreenExited += OnScreenExited;
+        CollisionArea.AreaEntered += OnBodyEntered;
+        CreateTween().SetLoops().TweenCallback(Callable.From(Shoot)).SetDelay(LaserInterval);
     }
 
-    public override void _Process(double delta)
+    protected void Move(double delta, Vector2 direction)
     {
-        base._Process(delta);
-
-        Move(delta);
-    }
-
-    private void Move(double delta)
-    {
-        var newPosition = Position;
-        newPosition.Y += Speed * (float)delta;
-        Position = newPosition;
+        Position += Speed * direction.Normalized() * (float)delta;
     }
 
     protected void Shoot()
@@ -69,6 +46,12 @@ public partial class BaseEnemy : Node2D
         AddSibling(laser);
     }
 
+    private void OnHealthDepleted()
+    {
+        QueueFree();
+        GameEvents.EnemyDestroyed?.Invoke(ScoreValue);
+    }
+    
     private void OnGameOver()
     {
 		QueueFree();
@@ -88,12 +71,6 @@ public partial class BaseEnemy : Node2D
             health.TakeDamage(damage);            
         }
 	}
-
-    private void OnHealthDepleted()
-    {
-        QueueFree();
-        GameEvents.EnemyDestroyed?.Invoke(ScoreValue);
-    }
 
     protected override void Dispose(bool disposing)
     {
