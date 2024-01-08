@@ -25,15 +25,6 @@ public partial class TestStage : Stage
 		CreateTween().TweenCallback(Callable.From(EndStage)).SetDelay(10);
 	}
 
-	private void EndStage()
-	{
-		if (GameState.IsGameOver)
-			return;
-
-		GD.Print("Test Stage Complete");
-		StageCompleted?.Invoke();
-	}
-
     private void SpawnRandomEnemy()
     {
 		var randomEnemyScene = enemies[GD.Randi() % enemies.Length];
@@ -50,9 +41,4 @@ public partial class TestStage : Stage
 		newEnemy.Position = new Vector2(xPos, 0);
 		AddSibling(newEnemy);
 	}
-
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
-    }
 }
