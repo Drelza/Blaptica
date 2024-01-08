@@ -1,22 +1,14 @@
-using Godot;
-using System;
+﻿using Godot;
+
+namespace Blaptica;
 
 public partial class GameManager : Node
 {
-    public static bool IsGameOver => gameState == GameState.GAME_OVER;
-
-    private enum GameState
-    {
-        GAME_OVER, PLAYING
-    }
-
-    private static GameState gameState;
-
     public override void _Ready()
     {
-        base._Ready();
+        base._Ready();        
 
-        gameState = GameState.PLAYING;
+        GameState.SetPlaying();
         
         GameEvents.GameOver += OnGameOver;
         ScoreBar.Emptied += OnProgressBarEmptied;
@@ -25,12 +17,13 @@ public partial class GameManager : Node
     public override void _Process(double delta)
     {
         base._Process(delta);
-        handleInput();
+
+        HandleInput();
     }
 
-    private void handleInput()
+    private void HandleInput()
     {
-        if (IsGameOver && Input.IsActionJustPressed("ui_accept"))
+        if (GameState.IsGameOver && Input.IsActionJustPressed("ui_accept"))
         {
             GetTree().ReloadCurrentScene();
         }
@@ -43,11 +36,6 @@ public partial class GameManager : Node
 
     private void OnGameOver()
     {
-        gameState = GameState.GAME_OVER;
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
-    }
+        GameState.SetGameOver();
+    }    
 }

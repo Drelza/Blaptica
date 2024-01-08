@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://bj3qmpvjhff28"]
+
+[ext_resource type="PackedScene" uid="uid://bhr3p3c08gvvp" path="res://Scenes/Stage.tscn" id="1_imyje"]
+[ext_resource type="Script" path="res://Scripts/FirstStage.cs" id="2_14y74"]
+[ext_resource type="PackedScene" uid="uid://cwb8vw0pims5r" path="res://Scenes/Wave.tscn" id="3_rwyp3"]
+
+[node name="Stage" instance=ExtResource("1_imyje")]
+script = ExtResource("2_14y74")
+WaveScenes = Array[PackedScene]([ExtResource("3_rwyp3")])
