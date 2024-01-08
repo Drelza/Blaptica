@@ -8,3 +8,4 @@
 - Scene inheritance is inidicated on the child scene
   - Example: `[ext_resource type="PackedScene" uid="uid://cuoifcp2ofdea" path="res://Scenes/Ship.tscn" id="1_44hq2"]`
 - Track when enemies have left the screen with `VisibleOnScreenNotifier2D` Node `ScreenExited` Event
+- Wrapping PackedSenes in a custom Resourse help enforce type safety
