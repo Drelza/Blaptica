@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://b117wirwmg5ag"]
+
+[ext_resource type="PackedScene" uid="uid://6a4knn5jufl4" path="res://Scenes/Ships/Ship.tscn" id="1_i835y"]
+[ext_resource type="Texture2D" uid="uid://dsc2e4w57dunt" path="res://Assets/Space Shooter Redux/PNG/playerShip1_green.png" id="2_ooe8b"]
+[ext_resource type="Script" path="res://Scripts/PlayerShip.cs" id="2_u6f31"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q5587"]
+radius = 33.1361
+
+[node name="PlayerShip" instance=ExtResource("1_i835y")]
+position = Vector2(270, 925)
+script = ExtResource("2_u6f31")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_ooe8b")
+
+[node name="Area2D" parent="." index="1"]
+collision_mask = 10
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_q5587")
