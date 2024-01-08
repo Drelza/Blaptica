@@ -3,9 +3,6 @@ using System;
 
 public partial class EnemyShip : Ship
 {
-    [Export]
-	public PackedScene LaserScene;
-
 	[Export]
 	public float Speed = 200;
 
@@ -37,13 +34,6 @@ public partial class EnemyShip : Ship
     protected void Move(double delta, Vector2 direction)
     {
         Position += Speed * direction.Normalized() * (float)delta;
-    }
-
-    protected void Shoot()
-    {
-		var laser = LaserScene.Instantiate<Laser>();
-		laser.Position = Position;
-        AddSibling(laser);
     }
 
     private void OnHealthDepleted()

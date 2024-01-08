@@ -27,15 +27,8 @@ public partial class PlayerShip : Ship
 
         if (Input.IsActionJustPressed("primary"))
         {
-            FireLaser();
+            Shoot();
         }
-    }
-
-    private void FireLaser()
-    {
-        var laser = LaserScene.Instantiate<Laser>();
-        laser.Position = Position;
-        AddSibling(laser);
     }
 
     private void FollowMouse()
